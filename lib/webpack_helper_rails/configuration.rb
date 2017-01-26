@@ -2,8 +2,6 @@ require 'pathname'
 
 module WebpackHelperRails
   class Configuration
-    include Singletone
-
     include Singleton
 
     attr_accessor :manifest_relative_path
