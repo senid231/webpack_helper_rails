@@ -4,11 +4,11 @@ require'webpack_helper_rails/configuration'
 
 module WebpackHelperRails
 
-  def configure
+  def self.configure
     yield configuration
   end
 
-  def configuration
+  def self.configuration
     WebpackHelperRails::Configuration.instance
   end
 
