@@ -20,5 +20,21 @@ module WebpackHelperRails
       webpack_find_asset("#{source}.css")
     end
 
+    def webpack_css_link_tag(*sources)
+      options = sources.extract_options!.symbolize_keys
+
+      sources.uniq.map { |source| webpack_asset_css(source) }.compact.map { |href|
+        tag :link, {rel: 'stylesheet', media: 'screen', href: href}.merge(options)
+      }.join("\n").html_safe
+    end
+
+    def webpack_js_include_tag(*sources)
+      options = sources.extract_options!.symbolize_keys
+
+      sources.uniq.map { |source| webpack_asset_js(source) }.compact.map { |src|
+        content_tag 'script'.freeze, '', {src: src}.merge(options)
+      }.join("\n").html_safe
+    end
+
   end
 end
